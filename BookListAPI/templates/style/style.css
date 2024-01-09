@@ -1,0 +1,50 @@
+@font-face {
+    font-family: MainFont;
+    src: url(BebasNeue-Bold.ttf);
+}
+
+* {
+    background-color: #e5e7e4;
+    color: #000;
+    font-family: sans-serif;
+}
+
+
+h1 {
+    font-size: 3em;
+    color: #848871;
+    text-align: center;
+    background-color: #3f3f3f;
+    padding: 1em;
+    font-family: MainFont;
+}
+
+h2 {
+    font-size: 2em;
+    color: #262b15;
+    text-align: left;
+    font-family: MainFont;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #262b15;
+    text-align: left;
+    font-family: MainFont;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.book {
+    padding: 1em;
+    text-align: center;
+    background-color: #848871;
+    border-radius: 5%;
+    margin: 1em;
+}
+
+
+
