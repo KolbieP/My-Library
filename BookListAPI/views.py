@@ -6,19 +6,19 @@ from django.shortcuts import render
 
 # Create your views here.
 
-#Is a get that allows to look at books in the library. Allows filtering, sorting and searching.
+#Is a Class-based view that allows to look at books in the library. Allows filtering, sorting and searching. - GET
 class showBooks (viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     ordering_fields=['rating','author']
     search_fields=['title', 'author', 'rating']
 
-#Allows to add Books to my library
+#Allows to add Books to my library - POST
 class newBook (generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
-#Allows to change/delete books in the database 
+#Allows to change/delete books in the database - DELETE
 class changeBook (generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer

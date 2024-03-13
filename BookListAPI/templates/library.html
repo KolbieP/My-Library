@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kolbie's Library</title>
-    <link rel="stylesheet" href="style/style.css">
+    {% load static %}
+    <!--<link rel="stylesheet" href="style.css">-->
+    <link rel="stylesheet" type="text/css" href="{% static 'BookListAPI/style.css' %}">
 </head>
 <body>
     <h1>Kolbie's Library</h1>
     <h2>Here you can find my favourite books and my most recent reads</h2>
     <h3>I will also be rating the books 1-5 (1 being low, 5 being high)</h3>
 
+    {% if book %}
     <div class="grid-container">
         {% for Book in book %}
         <div class="book"> {{Book.title}} <br> {{Book.author}} <br> {{Book.rating}} </div>
         {% endfor %}
     </div>
+    {% else %}
+        <p>There is no books in the Library at the time</p>
+    {% endif %}5
 </body>
 </html>
