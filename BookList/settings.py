@@ -118,6 +118,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# Specifies the directory where Django will look for style.css outside of the app-specific static directories.
+STATICFILES_DIRS = [BASE_DIR / "BookListAPI/templates/static"]  
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
