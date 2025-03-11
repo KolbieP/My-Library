@@ -18,11 +18,11 @@
 <h4> Features </h4>
 
 <ul>
-  <li>View Books: Class-based view to look at books in the library with filtering, sorting, and searching capabilities.</li>
-  <li>Add Books: Allows adding new books to the library.</li>
-  <li>Update/Delete Books: Enables updating or deleting books in the database.</li>
-  <li>Index Page: Connects to index.html.</li>
-  <li>Library Page: Connects to library.html to display books.</li>
+   <li><strong>View Books</strong>: Class-based view to look at books in the library with filtering, sorting, and searching capabilities.</li>
+   <li><strong>Add Books</strong>: Allows adding new books to the library.</li>
+   <li><strong>Update/Delete Books</strong>: Enables updating or deleting books in the database.</li>
+   <li><strong>Index Page</strong>: Connects to index.html.</li>
+   <li><strong>Library Page</strong>: Connects to library.html to display books.</li>
 </ul>
 
 
@@ -35,15 +35,20 @@
 </ul>
 
 <h4> Installation </h4>
-
-<p> Clone the repository: </p>
-<p><i>git clone https://github.com/yourusername/BookList.git</i></p>
-<p>Navigate to the project directory:</p>
-<p><i>cd BookList</i></p>
-<p>Install the required packages:</p>
-<p><i>pip install -r requirements.txt</i></p>
-<p>Run the development server:</p>
-<p><i>python manage.py runserver</i></p>
+ <ol>
+      <li>Clone the repository:
+      <pre><code>git clone https://github.com/yourusername/BookList.git</code></pre>
+  </li>
+      <li>Navigate to the project directory:
+      <pre><code>cd BookList</code></pre>
+  </li>
+      <li>Install the required packages:
+      <pre><code>pip install -r requirements.txt</code></pre>
+  </li>
+      <li>Run the development server:
+      <pre><code>python manage.py runserver</code></pre>
+  </li>
+</ol>
 
 <h4>Usage</h4>
 
