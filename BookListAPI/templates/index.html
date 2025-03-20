@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kolbie's Library</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
-    <h1>Here is my index</h1>
+    <div class="heading">
+    <h1>Welcome to Kolbie's Library</h1>
+    <nav class="top-nav">
+        <a href="{% url 'index' %}" class="nav-link">Home</a>
+        <a href="{% url 'book' %}" class="nav-link">Library</a>
+    </nav>
+    </div>
+    <h2>A Collection of My Favorite Books</h2>
+    <p>Welcome to my library! Here, you'll find a collection of some of the books I've read and enjoyed. Feel free to browse through the titles and discover new reads. Each book is rated on a scale of 1 to 5, with 1 being the lowest and 5 being the highest.</p>
+    <p>Click on the "Library" link to explore the books in detail.</p>
+    <a href="{% url 'book' %}" class="button">Go to Library</a>
 </body>
 </html>

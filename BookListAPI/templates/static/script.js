@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
-    const books = document.querySelectorAll('.book');
-    const totalBooks = books.length;
+    const singleBooks = document.querySelectorAll('.book-container .book');
+    const totalBooks = singleBooks.length;
 
     function showBook(index) {
-        books.forEach((book, i) => {
-            book.classList.toggle('active', i === index);
+        singleBooks.forEach((book, i) => {
+            book.style.display = (i === index) ? 'block' : 'none';
         });
     }
 
@@ -19,5 +19,31 @@ document.addEventListener('DOMContentLoaded', function() {
         showBook(currentIndex);
     });
 
+    document.getElementById('toggle-list').addEventListener('click', function() {
+        var bookList = document.getElementById('book-list');
+        if (bookList.style.display === 'none') { 
+            bookList.style.display = 'block'; 
+            this.textContent = 'Hide list of books';
+        } else { 
+            bookList.style.display = 'none'; 
+            this.textContent = 'Display list of books';
+        } 
+    });
+
+    // JavaScript for navigating through individual books
+    let currentBookIndex = 0;
+    const books = document.querySelectorAll('.book');
+    document.getElementById('prev').addEventListener('click', function() {
+        books[currentBookIndex].style.display = 'none';
+        currentBookIndex = (currentBookIndex - 1 + books.length) % books.length;
+        books[currentBookIndex].style.display = 'block';
+    });
+    document.getElementById('next').addEventListener('click', function() {
+        books[currentBookIndex].style.display = 'none';
+        currentBookIndex = (currentBookIndex + 1) % books.length;
+        books[currentBookIndex].style.display = 'block';
+    });
+
+    // Show the first book initially
     showBook(currentIndex);
 });

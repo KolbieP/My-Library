@@ -12,7 +12,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 100vh;
 }
 
@@ -31,11 +31,38 @@ h1 {
     z-index: 1000;
 }
 
+.top-nav {
+    width: 100%;
+    background-color: #3f3f3f;
+    display: flex;
+    justify-content: center;
+    padding: 1em 0;
+    position: fixed;
+    top: 4em; /* Adjust for fixed header */
+    z-index: 999;
+}
+
+.heading {
+    background-color: #3f3f3f;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 1em;
+    font-size: 1.2em;
+}
+
+.nav-link:hover {
+    color: #cccccc;
+}
+
 h2 {
     color: #3f3f3f;
     text-align: center;
     margin: 0.5em 0;
     font-size: 1.75em;
+    margin-top: 6em; /* Adjust for fixed header and nav */
 }
 
 h3 {
@@ -45,13 +72,25 @@ h3 {
     font-size: 1.5em;
 }
 
+.book-container h4 {
+    color: #3f3f3f;
+    font-size: 2em;
+    margin: 0.5em 0;
+}
+
+.book-container p {
+    color: #3f3f3f;
+    font-size: 1.5em;
+    margin: 0.5em 0;
+}
+
 .book-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-top: 2em;
+    margin-top: 2em; 
 }
 
 .book {
@@ -69,22 +108,17 @@ h3 {
     display: block;
 }
 
-.book h4 {
-    font-size: 2em;
-    color: #262b15;
-    margin-bottom: 0.5em;
-}
-
-.book p {
-    font-size: 1.2em;
-    color: #262b15;
+.book-container.active {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
 }
 
 .navigation {
     margin-top: 20px;
 }
 
-.navigation button {
+.navigation button, #show-all, #hide-all {
     padding: 10px 20px;
     margin: 5px;
     background-color: #3f3f3f;
@@ -95,6 +129,53 @@ h3 {
     font-family: 'MainFont', sans-serif;
 }
 
-.navigation button:hover {
+.navigation button:hover, #show-all:hover, #hide-all:hover {
     background-color: #262626;
+}
+
+.all-books-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+    width: 100%;
+    padding: 1em;
+}
+
+.button { 
+    display: inline-block; 
+    padding: 10px 20px; 
+    margin: 10px 0; 
+    background-color: #3f3f3f; 
+    color: #ffffff; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    font-family: 'MainFont', sans-serif; 
+    text-align: center; 
+}
+
+.button:hover {
+    background-color: #262626;
+}
+
+.book-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.book-container th, .book-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.book-container th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+.book-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.book-container tr:hover {
+    background-color: #ddd;
 }

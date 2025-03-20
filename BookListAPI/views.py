@@ -1,4 +1,3 @@
-
 from rest_framework import generics, viewsets
 from .models import Book
 from .serializers import BookSerializer
@@ -28,6 +27,12 @@ def index(request):
     return render(request, 'index.html', {})
 
 #Connects to library.html
+def ListshowBooks(request):
+    data = Book.objects.all()
+    context = {"book": data}
+    return render(request, "library.html", context)
+
+
 def ListshowBooks(request):
     data = Book.objects.all()
     context = {"book": data}
