@@ -2,6 +2,7 @@ from rest_framework import generics, viewsets
 from .models import Book
 from .serializers import BookSerializer
 from django.shortcuts import render
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -37,3 +38,14 @@ def ListshowBooks(request):
     data = Book.objects.all()
     context = {"book": data}
     return render(request, "library.html", context)
+
+#Allows search function to search the database
+def search_books(request):
+    query = request.GET.get('query', '')
+    if query:
+        books = Book.objects.filter(title__icontains=query) | Book.objects.filter(author__icontains=query)
+    else:
+        books = Book.objects.all()
+    
+    results = [{'title': book.title, 'author': book.author, 'rating': book.rating} for book in books]
+    return JsonResponse(results, safe=False)

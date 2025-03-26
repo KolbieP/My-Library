@@ -92,31 +92,32 @@
             var resultsContainer = document.getElementById('searchResults');
             resultsContainer.innerHTML = ''; // Clear previous results
 
-            // Assuming you have a list of books in a variable called 'books'
-            var books = [
-                { title: 'Book Title 1', author: 'Author 1', rating: '5' },
-                { title: 'Book Title 2', author: 'Author 2', rating: '4' },
-                // Add more books here
-            ];
-
-            var filteredBooks = books.filter(function (book) {
-                return book.title.toLowerCase().includes(query) ||
-                    book.author.toLowerCase().includes(query);
-            });
-
-            if (filteredBooks.length > 0) {
-                filteredBooks.forEach(function (book) {
-                    var bookElement = document.createElement('div');
-                    bookElement.innerHTML = `
-                <h3>${book.title}</h3>
-                <h3>${book.author}</h3>
-                <h3>${book.rating}</h3>
-            `;
-                    resultsContainer.appendChild(bookElement);
+            fetch(`/api/search/?query=${query}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.length > 0) {
+                        data.forEach(book => {
+                            var bookElement = document.createElement('div');
+                            bookElement.innerHTML = `
+                        <h3>${book.title}</h3>
+                        <h3>${book.author}</h3>
+                        <h3>${book.rating}</h3>
+                    `;
+                            resultsContainer.appendChild(bookElement);
+                        });
+                    } else {
+                        resultsContainer.innerHTML = '<p>No books found.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    resultsContainer.innerHTML = '<p>An error occurred while searching for books.</p>';
                 });
-            } else {
-                resultsContainer.innerHTML = '<p>No books found.</p>';
-            }
         }
 
         document.addEventListener('DOMContentLoaded', function () {

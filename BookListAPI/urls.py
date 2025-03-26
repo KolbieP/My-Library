@@ -7,4 +7,5 @@ urlpatterns = [
     path('add', views.newBook.as_view()),
     path('', views.index, name='index'),
     path('library', views.ListshowBooks, name='book'),
+    path('search/', views.search_books, name='search_books'),
 ]
