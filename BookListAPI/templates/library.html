@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,7 +58,7 @@
     </div>
     <div class="search">
         <input type="text" id="searchInput" placeholder="Search for a book...">
-        <button onclick="searchBooks()">Search</button>
+        <button>Search</button>
         <div id="searchResults">
             <!-- Search results will be displayed here -->
         </div>
@@ -92,6 +91,11 @@
             var resultsContainer = document.getElementById('searchResults');
             resultsContainer.innerHTML = ''; // Clear previous results
 
+            if (query.trim() === '') {
+                resultsContainer.innerHTML = '<p>Must input text to search.</p>';
+                return;
+            }
+
             fetch(`/api/search/?query=${query}`)
                 .then(response => {
                     if (!response.ok) {
@@ -103,10 +107,11 @@
                     if (data.length > 0) {
                         data.forEach(book => {
                             var bookElement = document.createElement('div');
+                            bookElement.classList.add('book-card');
                             bookElement.innerHTML = `
                         <h3>${book.title}</h3>
-                        <h3>${book.author}</h3>
-                        <h3>${book.rating}</h3>
+                        <h4>${book.author}</h4>
+                        <h4>${book.rating}</h4>
                     `;
                             resultsContainer.appendChild(bookElement);
                         });
@@ -133,5 +138,4 @@
         });
     </script>
 </body>
-
 </html>
