@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,44 +8,35 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
+
 <body>
     <nav class="top-nav">
+        <div class="logo">
+            <img src="{% static 'white-logo.png' %}" alt="Logo">
+        </div>
         <ul class="nav-links">
             <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
-            <li><a href="{% url 'book' %}" class="nav-link">Library</a></li>
+            <li><a href="{% url 'book' %}" class="nav-link active">Library</a></li>
         </ul>
     </nav>
-
-  
-
-    <h2>Here you can find my favourite books and my most recent reads</h2>
-    <h3>I will also be rating the books 1-5</h3> 
-    <p>(1 being low, 5 being high)</p>
-
-    <div id="individual-books">
-        {% if book %}
-        <div class="book-container">
-            {% for Book in book %}
-            <div class="book" id="book-{{ forloop.counter0 }}">
-                <h4>{{ Book.title }}</h4>
-                <p>Author: {{ Book.author }}</p>
-                <p>Rating: {{ Book.rating }}</p>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="navigation">
-            <button id="prev">Previous</button>
-            <button id="next">Next</button>
-        </div>
-        {% endif %}
+    <div class="main-image">
+        <h1 class="main">Book Collection</h1>
     </div>
 
-    <button id="toggle-list">Display list of books</button>
-
-    <div id="book-list" style="display: none;">
+    <div class="group">
+        <h2>My Personal Library</h2>
+        <p>Welcome to My Personal Library! Here is a curated collection of all the books I've ever read designed to
+            inspire fellow book lovers and provide a comprehensive record of my literary journey. Here, you can explore
+            a diverse range of genres, discover new favorites, and track your own reading progress alongside mine. Dive
+            into the world of books and let the stories ignite your imagination!</p>
+    </div>
+    <div class="book-button-container">
+        <button class="book-button" onclick="toggleLibrary()">Display Library</button>
+    </div>
+    <div class="book-display" id="bookDisplay" style="display: none; text-align: center;">
         {% if book %}
         <div class="book-container">
-            <table>
+            <table class="book-table">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -65,41 +57,80 @@
         </div>
         {% endif %}
     </div>
-
+    <div class="search">
+        <input type="text" id="searchInput" placeholder="Search for a book...">
+        <button onclick="searchBooks()">Search</button>
+        <div id="searchResults">
+            <!-- Search results will be displayed here -->
+        </div>
+    </div>
+    <footer class="top-nav">
+        <div class="logo">
+            <img src="{% static 'white-logo.png' %}" alt="Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+            <li><a href="{% url 'book' %}" class="nav-link active">Library</a></li>
+        </ul>
+    </footer>
     <script src="{% static 'script.js' %}"></script>
     <script>
-        document.getElementById('toggle-list').addEventListener('click', function() {
-            var bookList = document.getElementById('book-list');
-            var individualBooks = document.getElementById('individual-books');
-            if (bookList.style.display === 'none') {
-                bookList.style.display = 'block';
-                individualBooks.style.display = 'none';
-                this.textContent = 'Hide list of books';
+        function toggleLibrary() {
+            var bookDisplay = document.getElementById('bookDisplay');
+            var button = document.querySelector('.book-button');
+            if (bookDisplay.style.display === 'none') {
+                bookDisplay.style.display = 'block';
+                button.textContent = 'Hide Library';
             } else {
-                bookList.style.display = 'none';
-                individualBooks.style.display = 'block';
-                this.textContent = 'Display list of books';
+                bookDisplay.style.display = 'none';
+                button.textContent = 'Display Library';
             }
-        });
+        }
 
-        // JavaScript for navigating through individual books
-        let currentBookIndex = 0;
-        const books = document.querySelectorAll('.book');
-        document.getElementById('prev').addEventListener('click', function() {
-            books[currentBookIndex].style.display = 'none';
-            currentBookIndex = (currentBookIndex - 1 + books.length) % books.length;
-            books[currentBookIndex].style.display = 'block';
-        });
-        document.getElementById('next').addEventListener('click', function() {
-            books[currentBookIndex].style.display = 'none';
-            currentBookIndex = (currentBookIndex + 1) % books.length;
-            books[currentBookIndex].style.display = 'block';
-        });
+        function searchBooks() {
+            var query = document.getElementById('searchInput').value.toLowerCase();
+            var resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = ''; // Clear previous results
 
-        // Initially show only the first book
-        books.forEach((book, index) => {
-            if (index !== 0) book.style.display = 'none';
+            // Assuming you have a list of books in a variable called 'books'
+            var books = [
+                { title: 'Book Title 1', author: 'Author 1', rating: '5' },
+                { title: 'Book Title 2', author: 'Author 2', rating: '4' },
+                // Add more books here
+            ];
+
+            var filteredBooks = books.filter(function (book) {
+                return book.title.toLowerCase().includes(query) ||
+                    book.author.toLowerCase().includes(query);
+            });
+
+            if (filteredBooks.length > 0) {
+                filteredBooks.forEach(function (book) {
+                    var bookElement = document.createElement('div');
+                    bookElement.innerHTML = `
+                <h3>${book.title}</h3>
+                <h3>${book.author}</h3>
+                <h3>${book.rating}</h3>
+            `;
+                    resultsContainer.appendChild(bookElement);
+                });
+            } else {
+                resultsContainer.innerHTML = '<p>No books found.</p>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var button = document.querySelector('.book-button');
+            if (button) {
+                button.addEventListener('click', toggleLibrary);
+            }
+
+            var searchButton = document.querySelector('.search button');
+            if (searchButton) {
+                searchButton.addEventListener('click', searchBooks);
+            }
         });
     </script>
 </body>
+
 </html>

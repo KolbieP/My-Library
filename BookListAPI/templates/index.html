@@ -9,13 +9,24 @@
 </head>
 <body>
     <nav class="top-nav">
+        <div class="logo">
+            <img src="{% static 'white-logo.png' %}" alt="Logo">
+        </div>
         <ul class="nav-links">
-            <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+            <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
             <li><a href="{% url 'book' %}" class="nav-link">Library</a></li>
         </ul>
     </nav>
     
     <div>
+        <div class="main-image">
+            <h1 class="main">Kolbie's Library</h1>
+        </div>
+        <div class="group">
+            <h2>My Literary Adventures</h2>
+            <p>Welcome to my library! Here, you'll find a curated selection of books that I've read and enjoyed. Feel free to browse through the titles and discover new reads.</p>
+            <a href="{% url 'book' %}" class="button">Go to Library</a>
+        </div>
         <div class="book-of-month">
             <div class="image">
                 <img alt="The Poppy War Book Cover" src="{% static '/book-cover.jpg' %}" class="book-image">
@@ -25,21 +36,23 @@
                 <h3>The Poppy War</h3>
                 <h4>R.F. Kuang</h4>
                 <p>An epic historical military fantasy, inspired by the bloody history of China’s twentieth century and filled with treachery and magic. 
-                    <br>When Rin aced the Keju—the Empire-wide test to find the most talented youth to learn at the Academies—it was a shock to everyone: to the test officials, who couldn’t believe a war orphan from Rooster Province could pass without cheating; to Rin’s guardians, who believed they’d finally be able to marry her off and further their criminal enterprise; and to Rin herself, who realized she was finally free of the servitude and despair that had made up her daily existence. That she got into Sinegard—the most elite military school in Nikan—was even more surprising.
-                    <br>But surprises aren’t always good.
-                    <br>Because being a dark-skinned peasant girl from the south is not an easy thing at Sinegard. Targeted from the outset by rival classmates for her color, poverty, and gender, Rin discovers she possesses a lethal, unearthly power—an aptitude for the nearly-mythical art of shamanism. Exploring the depths of her gift with the help of a seemingly insane teacher and psychoactive substances, Rin learns that gods long thought dead are very much alive—and that mastering control over those powers could mean more than just surviving school.
-                    <br>For while the Nikara Empire is at peace, the Federation of Mugen still lurks across a narrow sea. The militarily advanced Federation occupied Nikan for decades after the First Poppy War, and only barely lost the continent in the Second. And while most of the people are complacent to go about their lives, a few are aware that a Third Poppy War is just a spark away . . .
-                    <br>Rin’s shamanic powers may be the only way to save her people. But as she finds out more about the god that has chosen her, the vengeful Phoenix, she fears that winning the war may cost her humanity . . . and that it may already be too late.</p>
+                    <br><br>When Rin aced the Keju—the Empire-wide test to find the most talented youth to learn at the Academies—it was a shock to everyone: to the test officials, who couldn’t believe a war orphan from Rooster Province could pass without cheating; to Rin’s guardians, who believed they’d finally be able to marry her off and further their criminal enterprise; and to Rin herself, who realized she was finally free of the servitude and despair that had made up her daily existence. That she got into Sinegard—the most elite military school in Nikan—was even more surprising.
+                    <br><br>But surprises aren’t always good.
+                    <br><br>Because being a dark-skinned peasant girl from the south is not an easy thing at Sinegard. Targeted from the outset by rival classmates for her color, poverty, and gender, Rin discovers she possesses a lethal, unearthly power—an aptitude for the nearly-mythical art of shamanism. Exploring the depths of her gift with the help of a seemingly insane teacher and psychoactive substances, Rin learns that gods long thought dead are very much alive—and that mastering control over those powers could mean more than just surviving school.
+                    <br><br>For while the Nikara Empire is at peace, the Federation of Mugen still lurks across a narrow sea. The militarily advanced Federation occupied Nikan for decades after the First Poppy War, and only barely lost the continent in the Second. And while most of the people are complacent to go about their lives, a few are aware that a Third Poppy War is just a spark away . . .
+                    <br><br>Rin’s shamanic powers may be the only way to save her people. But as she finds out more about the god that has chosen her, the vengeful Phoenix, she fears that winning the war may cost her humanity . . . and that it may already be too late.</p>
             </div>
         </div>
-    
-        <div class="group">
-            <h2>A Collection of My Favorite Books</h2>
-            <p>Welcome to my library! Here, you'll find a collection of some of the books I've read and enjoyed. Feel free to browse through the titles and discover new reads. Each book is rated on a scale of 1 to 5, with 1 being the lowest and 5 being the highest.</p>
-            <p>Click on the "Library" link to explore the books in detail.</p>
-            <a href="{% url 'book' %}" class="button">Go to Library</a>
-        </div>
     </div>
-    <script src="{% static 'script.js' %}"></script>
+    <footer class="top-nav">
+        <div class="logo">
+            <img src="{% static 'white-logo.png' %}" alt="Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
+            <li><a href="{% url 'book' %}" class="nav-link">Library</a></li>
+        </ul>
+    </footer>
+    <script src="{% static 'static/script.js' %}"></script>
 </body>
 </html>
