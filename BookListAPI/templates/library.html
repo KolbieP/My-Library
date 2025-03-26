@@ -8,13 +8,15 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
-    <div class="heading">
-        <h1>Kolbie's Library</h1>
-        <nav class="top-nav">
-            <a href="{% url 'index' %}" class="nav-link">Home</a>
-            <a href="{% url 'book' %}" class="nav-link">Library</a>
-        </nav>
-    </div>
+    <nav class="top-nav">
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+            <li><a href="{% url 'book' %}" class="nav-link">Library</a></li>
+        </ul>
+    </nav>
+
+  
+
     <h2>Here you can find my favourite books and my most recent reads</h2>
     <h3>I will also be rating the books 1-5</h3> 
     <p>(1 being low, 5 being high)</p>

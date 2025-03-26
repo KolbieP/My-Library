@@ -1,181 +1,91 @@
+/* Color Pallet
+
+Dark accent: #462C2F
+Bright accent: #E16C5B
+Accent: #713C46
+Background: #EEEEEE
+Font: #262626 */
+
 @font-face {
-    font-family: MainFont;
+    font-family: Headers;
     src: url(BebasNeue-Bold.ttf);
 }
 
-body {
-    background-color: #f4f4f9;
-    color: #333;
-    font-family: 'MainFont', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
+@font-face {
+    font-family: MainFont;
+    src: url(Roboto-Regular.ttf);
 }
 
-h1 {
-    font-size: 3em;
-    color: #ffffff;
-    text-align: center;
-    background-color: #3f3f3f;
-    padding-top: 1em;
-    padding-bottom: 1em;
+.body {
+    font-family: MainFont;
+    background-color: #EEEEEE;
+    color: #262626;
+}
+
+.h1, h2, h3, h4, h5 {
+    font-family: Headers;
+    color: #E16C5B;
+}
+
+
+
+.top-nav {
+    font-family: Headers;
+    background-color: #262626;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    margin: 0;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
 }
 
-.top-nav {
-    width: 100%;
-    background-color: #3f3f3f;
+.nav-links {
+    list-style-type: none;
     display: flex;
-    justify-content: center;
-    padding: 1em 0;
-    position: fixed;
-    top: 4em; /* Adjust for fixed header */
-    z-index: 999;
-}
-
-.heading {
-    background-color: #3f3f3f;
+    gap: 20px;
 }
 
 .nav-link {
-    color: #ffffff;
+    color: #E16C5B;
     text-decoration: none;
-    margin: 0 1em;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 .nav-link:hover {
-    color: #cccccc;
+    color: #713C46;
 }
 
-h2 {
-    color: #3f3f3f;
-    text-align: center;
-    margin: 0.5em 0;
-    font-size: 1.75em;
-    margin-top: 6em; /* Adjust for fixed header and nav */
-}
-
-h3 {
-    color: #3f3f3f;
-    text-align: center;
-    margin: 0.5em 0;
-    font-size: 1.5em;
-}
-
-.book-container h4 {
-    color: #3f3f3f;
-    font-size: 2em;
-    margin: 0.5em 0;
-}
-
-.book-container p {
-    color: #3f3f3f;
-    font-size: 1.5em;
-    margin: 0.5em 0;
-}
-
-.book-container {
+.book-of-month {
+    background-color: #462C2F; 
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-top: 2em; 
+    padding: 20px;
+    color: #EEEEEE; 
+    margin: 20px;
 }
 
-.book {
-    padding: 1em;
-    text-align: center;
-    background-color: #848871;
-    border-radius: 5%;
-    margin: 1em;
-    display: none;
-    width: 80%;
-    max-width: 600px;
+.book-of-month img {
+    margin-right: 20px;
+    width: 200px; 
 }
 
-.book.active {
-    display: block;
+.book-of-month .text {
+    flex: 1; 
 }
 
-.book-container.active {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1em;
+.book-of-month .image {
+    flex: 0 0 20%; 
 }
 
-.navigation {
-    margin-top: 20px;
+.book-of-month img {
+    width: 100%; 
 }
 
-.navigation button, #show-all, #hide-all {
-    padding: 10px 20px;
-    margin: 5px;
-    background-color: #3f3f3f;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'MainFont', sans-serif;
-}
-
-.navigation button:hover, #show-all:hover, #hide-all:hover {
-    background-color: #262626;
-}
-
-.all-books-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1em;
-    width: 100%;
-    padding: 1em;
-}
-
-.button { 
-    display: inline-block; 
-    padding: 10px 20px; 
-    margin: 10px 0; 
-    background-color: #3f3f3f; 
-    color: #ffffff; 
-    text-decoration: none; 
-    border-radius: 5px; 
-    font-family: 'MainFont', sans-serif; 
+.book-of-month .text {
+    flex: 0 0 60%; 
     text-align: center; 
-}
-
-.button:hover {
-    background-color: #262626;
-}
-
-.book-container table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.book-container th, .book-container td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-.book-container th {
-    background-color: #f2f2f2;
-    text-align: left;
-}
-
-.book-container tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.book-container tr:hover {
-    background-color: #ddd;
+    padding: 20px;
+    margin: 20px; 
 }
