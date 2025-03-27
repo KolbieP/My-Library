@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
+
 <body>
     <nav class="top-nav">
         <div class="logo">
@@ -14,37 +16,146 @@
         </div>
         <ul class="nav-links">
             <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
-            <li><a href="{% url 'public_library' %}" class="nav-link active">Public Library</a></li>
+            <li><a href="{% url 'book' %}" class="nav-link">Library</a></li>
         </ul>
     </nav>
+    <div class="main-image">
+        <h1 class="main">Public Library</h1>
+    </div>
     <div class="group">
-        <h2>Public Library</h2>
-        <div class="book-display">
-            {% if public_books %}
-            <div class="book-container">
-                <table class="book-table">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Author</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for book in public_books %}
-                        <tr>
-                            <td>{{ book.title }}</td>
-                            <td>{{ book.author }}</td>
-                            <td>{{ book.rating }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% else %}
-            <p>No books found.</p>
-            {% endif %}
+        <h2>Community Library</h2>
+        <p>Welcome to the Public Library! This is where people's favorite books are displayed, showcasing the diverse
+            tastes and cherished reads of our community. Contribute to the collection and help build a vibrant literary
+            space for everyone to enjoy!</p>
+        <p>Contribute to the community!</p>
+        <a href="{% url 'add_public_book' %}" class="button-second">Add Book</a>
+    </div>
+    <div class="book-button-container">
+        <button class="book-button">Display Library</button>
+    </div>
+    <div class="book-display" id="bookDisplay" style="display: none; text-align: center;">
+        {% if public_books %}
+        <div class="book-container">
+            <table class="book-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in public_books %}
+                    <tr>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.rating }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p>No books found.</p>
+        {% endif %}
+    </div>
+    <div class="search">
+        <h2 class="search-header">Search Through Public Library!</h2>
+        <input type="text" id="searchInput" placeholder="Search for a book...">
+        <div class="button-container">
+            <button class="search-button">Search</button>
+            <button class="clear-button">Clear Results</button>
+        </div>
+        <div id="searchResults">
+            <!-- Search results will be displayed here -->
         </div>
     </div>
+    <footer class="top-nav">
+        <div class="logo">
+            <img src="{% static 'white-logo.png' %}" alt="Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+            <li><a href="{% url 'book' %}" class="nav-link">Library</a></li>
+        </ul>
+    </footer>
+    <script>
+
+        function toggleLibrary() {
+            console.log("Button clicked");
+            var bookDisplay = document.getElementById('bookDisplay');
+            var button = document.querySelector('.book-button');
+            if (bookDisplay.style.display === 'none' || bookDisplay.style.display === '') {
+                bookDisplay.style.display = 'block';
+                button.textContent = 'Hide Library';
+            } else {
+                bookDisplay.style.display = 'none';
+                button.textContent = 'Display Library';
+            }
+        }
+
+        function searchBooks() {
+            var query = document.getElementById('searchInput').value.toLowerCase();
+            var resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = ''; // Clear previous results
+
+            if (query.trim() === '') {
+                resultsContainer.innerHTML = '<p>Must input text to search.</p>';
+                return;
+            }
+
+            fetch(`/api/public_library/search/?query=${query}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.length > 0) {
+                        data.forEach(book => {
+                            var bookElement = document.createElement('div');
+                            bookElement.classList.add('book-card');
+                            bookElement.innerHTML = `
+                        <h3>${book.title}</h3>
+                        <h4>${book.author}</h4>
+                        <h4>${book.rating}</h4>
+                    `;
+                            resultsContainer.appendChild(bookElement);
+                        });
+                    } else {
+                        resultsContainer.innerHTML = '<p>No books found.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    resultsContainer.innerHTML = '<p>An error occurred while searching for books.</p>';
+                });
+        }
+
+        function clearSearchResults() {
+            var resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = ''; // Clear search results
+            document.getElementById('searchInput').value = ''; // Clear search input
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var button = document.querySelector('.book-button');
+            if (button) {
+                button.addEventListener('click', toggleLibrary);
+            }
+
+            var searchButton = document.querySelector('.search button');
+            if (searchButton) {
+                searchButton.addEventListener('click', searchBooks);
+            }
+
+            var clearButton = document.querySelector('.clear-button');
+            if (clearButton) {
+                clearButton.addEventListener('click', clearSearchResults);
+            }
+        });
+    </script>
 </body>
+
 </html>

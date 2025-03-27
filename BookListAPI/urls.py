@@ -10,4 +10,5 @@ urlpatterns = [
     path('search/', views.search_books, name='search_books'),
     path('public_library/add', views.add_public_book, name='add_public_book'),
     path('public_library', views.ListPublicBooks, name='public_library'),
+    path('public_library/search/', views.search_public_books, name='search_public_books'),
 ]

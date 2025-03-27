@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
-
 <body>
     <nav class="top-nav">
         <div class="logo">
@@ -71,9 +69,14 @@
     <div class="group">
         <h2>Community Library</h2>
         <p>Welcome to the Public Library! This virtual space is designed for readers to share their favorite books and
-            contribute to a growing community of literary enthusiasts. Here, you can input your cherished reads, explore recommendations 
-            from fellow book lovers,and help build a diverse and dynamic collection. Join us in celebrating the joy of reading and discover new
+            contribute to a growing community of literary enthusiasts. Here, you can input your cherished reads, explore
+            recommendations
+            from fellow book lovers, and help build a diverse and dynamic collection. Join us in celebrating the joy of
+            reading and discover new
             stories that captivate and inspire!</p>
+        <div class="button-container">
+            <a href="{% url 'public_library' %}" class="button">Go to Public Library</a>
+        </div>
     </div>
     <footer class="top-nav">
         <div class="logo">
@@ -163,5 +166,4 @@
         });
     </script>
 </body>
-
 </html>

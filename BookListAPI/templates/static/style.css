@@ -220,10 +220,28 @@ footer .nav-link:hover {
     text-decoration: none;
     border-radius: 5px;
     transition: #462C2F 0.3s ease;
+    font-weight: bold;
 }
 
 .button:hover {
     background-color: #462C2F;
+}
+
+.button-second {
+    font-family: 'SourceSansProBold', sans-serif;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #E16C5B;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: #713C46 0.3s ease;
+    font-weight: bold;
+}
+
+.button-second:hover {
+    background-color: #713C46;
 }
 
 .book-button-container {
@@ -244,6 +262,7 @@ footer .nav-link:hover {
     text-decoration: none;
     border-radius: 5px;
     transition: #462C2F 0.3s ease;
+    font-weight: bold;
 }
 
 .book-button:hover {
@@ -325,6 +344,7 @@ footer .nav-link:hover {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .search-button:hover, .clear-button:hover {
@@ -364,3 +384,33 @@ footer .nav-link:hover {
     box-sizing: border-box;
 }
 
+form input[type="text"], form input[type="number"] {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 10px;
+}
+
+form button[type="submit"] {
+    font-family: 'SourceSansProBold', sans-serif;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #713C46;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form button[type="submit"]:hover {
+    background-color: #462C2F;
+}

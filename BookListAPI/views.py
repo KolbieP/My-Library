@@ -34,7 +34,7 @@ def ListshowBooks(request):
     return render(request, "library.html", context)
 
 
-#Allows search function to search the database
+#Allows search function to search my books in the database
 def search_books(request):
     query = request.GET.get('query', '')
     if query:
@@ -56,8 +56,21 @@ def add_public_book(request):
         return JsonResponse({'message': 'Book added successfully'}, status=201)
     return render(request, 'add_public_book.html')
 
+
 # View to list books in the public library
 def ListPublicBooks(request):
     data = PublicBook.objects.using('public_library').all()
     context = {"public_books": data}
     return render(request, "public_library.html", context)
+
+
+#Search books in the public library
+def search_public_books(request):
+    query = request.GET.get('query', '')
+    if query:
+        books = PublicBook.objects.using('public_library').filter(title__icontains=query) | PublicBook.objects.using('public_library').filter(author__icontains=query)
+    else:
+        books = PublicBook.objects.using('public_library').all()
+    
+    results = [{'title': book.title, 'author': book.author, 'rating': book.rating} for book in books]
+    return JsonResponse(results, safe=False)
