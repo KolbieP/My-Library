@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book to Public Library</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="logo">
+            <img src="{% static 'white-logo.png' %}" alt="Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+            <li><a href="{% url 'public_library' %}" class="nav-link active">Public Library</a></li>
+        </ul>
+    </nav>
+    <div class="group">
+        <h2>Add Book to Public Library</h2>
+        <form method="POST" action="{% url 'add_public_book' %}">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="text" name="author" placeholder="Author" required>
+            <input type="number" name="rating" placeholder="Rating" step="0.1" required>
+            <button type="submit">Add Book</button>
+        </form>
+    </div>
+</body>
+</html>

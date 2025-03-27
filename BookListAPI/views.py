@@ -46,6 +46,18 @@ def search_books(request):
     return JsonResponse(results, safe=False)
 
 
+# View to add books to the public library
 def add_public_book(request):
-    # Add book to public library
-    PublicBook.objects.using('public_library').create(title="New Book", author="Author", rating=5)
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        rating = request.POST.get('rating')
+        PublicBook.objects.using('public_library').create(title=title, author=author, rating=rating)
+        return JsonResponse({'message': 'Book added successfully'}, status=201)
+    return render(request, 'add_public_book.html')
+
+# View to list books in the public library
+def ListPublicBooks(request):
+    data = PublicBook.objects.using('public_library').all()
+    context = {"public_books": data}
+    return render(request, "public_library.html", context)

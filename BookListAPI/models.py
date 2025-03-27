@@ -20,4 +20,4 @@ class PublicBook(models.Model):
         return f"{self.title} by {self.author}"
 
     class Meta:
-        app_label = 'public_library'
+        app_label = 'BookListAPI'

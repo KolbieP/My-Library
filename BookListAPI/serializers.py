@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Book
+from .models import Book, PublicBook
 from rest_framework.validators import UniqueValidator
 
 #This serializer has some basic validation in the inputs that only allows rating to be less than or equal to 5
@@ -14,3 +14,10 @@ class BookSerializer(serializers.ModelSerializer):
                 'validators': [UniqueValidator(queryset=Book.objects.all())]
             }
         }
+
+
+# Serializer for PublicBook model
+class PublicBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PublicBook
+        fields = '__all__'
