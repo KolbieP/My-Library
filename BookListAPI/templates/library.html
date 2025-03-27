@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +31,7 @@
             into the world of books and let the stories ignite your imagination!</p>
     </div>
     <div class="book-button-container">
-        <button class="book-button" onclick="toggleLibrary()">Display Library</button>
+        <button class="book-button">Display Library</button>
     </div>
     <div class="book-display" id="bookDisplay" style="display: none; text-align: center;">
         {% if book %}
@@ -58,7 +59,10 @@
     </div>
     <div class="search">
         <input type="text" id="searchInput" placeholder="Search for a book...">
-        <button>Search</button>
+        <div class="button-container">
+            <button class="search-button">Search</button>
+            <button class="clear-button">Clear Results</button>
+        </div>
         <div id="searchResults">
             <!-- Search results will be displayed here -->
         </div>
@@ -74,10 +78,12 @@
     </footer>
     <script src="{% static 'script.js' %}"></script>
     <script>
+
         function toggleLibrary() {
+            console.log("Button clicked");
             var bookDisplay = document.getElementById('bookDisplay');
             var button = document.querySelector('.book-button');
-            if (bookDisplay.style.display === 'none') {
+            if (bookDisplay.style.display === 'none' || bookDisplay.style.display === '') {
                 bookDisplay.style.display = 'block';
                 button.textContent = 'Hide Library';
             } else {
@@ -125,6 +131,12 @@
                 });
         }
 
+        function clearSearchResults() {
+            var resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = ''; // Clear search results
+            document.getElementById('searchInput').value = ''; // Clear search input
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             var button = document.querySelector('.book-button');
             if (button) {
@@ -135,7 +147,13 @@
             if (searchButton) {
                 searchButton.addEventListener('click', searchBooks);
             }
+
+            var clearButton = document.querySelector('.clear-button');
+            if (clearButton) {
+                clearButton.addEventListener('click', clearSearchResults);
+            }
         });
     </script>
 </body>
+
 </html>

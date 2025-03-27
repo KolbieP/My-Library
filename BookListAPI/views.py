@@ -1,5 +1,5 @@
 from rest_framework import generics, viewsets
-from .models import Book
+from .models import Book, PublicBook
 from .serializers import BookSerializer
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -34,11 +34,6 @@ def ListshowBooks(request):
     return render(request, "library.html", context)
 
 
-def ListshowBooks(request):
-    data = Book.objects.all()
-    context = {"book": data}
-    return render(request, "library.html", context)
-
 #Allows search function to search the database
 def search_books(request):
     query = request.GET.get('query', '')
@@ -49,3 +44,8 @@ def search_books(request):
     
     results = [{'title': book.title, 'author': book.author, 'rating': book.rating} for book in books]
     return JsonResponse(results, safe=False)
+
+
+def add_public_book(request):
+    # Add book to public library
+    PublicBook.objects.using('public_library').create(title="New Book", author="Author", rating=5)

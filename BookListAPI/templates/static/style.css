@@ -157,8 +157,7 @@ footer .nav-link:hover {
 
 .book-of-month .text {
     flex: 1; 
-    text-align: left; 
-    padding: 20px;
+    text-align: left;
     margin: 20px; 
     display: flex;
     flex-direction: column;
@@ -291,7 +290,6 @@ footer .nav-link:hover {
     background-color: #ddd;
 }
 
-
 .search {
     display: flex;
     flex-direction: column;
@@ -309,7 +307,13 @@ footer .nav-link:hover {
     margin-bottom: 10px;
 }
 
-.search button {
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+}
+
+.search-button, .clear-button {
     font-family: 'SourceSansProBold', sans-serif;
     padding: 10px 20px;
     font-size: 1em;
@@ -321,7 +325,7 @@ footer .nav-link:hover {
     transition: background-color 0.3s ease;
 }
 
-.search button:hover {
+.search-button:hover, .clear-button:hover {
     background-color: #462C2F;
 }
 
@@ -357,3 +361,4 @@ footer .nav-link:hover {
     max-width: calc(33.333% - 40px); 
     box-sizing: border-box;
 }
+
