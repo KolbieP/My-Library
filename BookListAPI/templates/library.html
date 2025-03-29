@@ -6,6 +6,7 @@
     <title>Kolbie's Library</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}">
 </head>
 <body>
     <nav class="top-nav">
@@ -14,11 +15,12 @@
         </div>
         <ul class="nav-links">
             <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
-            <li><a href="{% url 'book' %}" class="nav-link active">Library</a></li>
+            <li><a href="{% url 'book' %}" class="nav-link active">Kolbie's Library</a></li>
+            <li><a href="{% url 'public_library' %}" class="nav-link">Public Library</a></li>
         </ul>
     </nav>
     <div class="main-image">
-        <h1 class="main">Book Collection</h1>
+        <h1 class="main">Kolbie's Library</h1>
     </div>
 
     <div class="group">
@@ -84,7 +86,8 @@
         </div>
         <ul class="nav-links">
             <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
-            <li><a href="{% url 'book' %}" class="nav-link active">Library</a></li>
+            <li><a href="{% url 'book' %}" class="nav-link active">Kolbie's Library</a></li>
+            <li><a href="{% url 'public_library' %}" class="nav-link">Public Library</a></li>
         </ul>
     </footer>
     <script src="{% static 'script.js' %}"></script>
