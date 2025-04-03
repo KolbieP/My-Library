@@ -186,7 +186,7 @@ footer .nav-link:hover {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
 }
 
-.group {
+.group, .single-group {
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -202,12 +202,29 @@ footer .nav-link:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.group h2 {
+.single-group {
+    background-color: #462C2F; 
+    color: #EEEEEE; 
+}
+
+.single-group #single-book-display {
+    text-align: center; /* Center align text */
+}
+
+.group h2, .single-group h2 {
     margin-bottom: 10px; 
 }
 
-.group p {
+.group p, .single-group p {
     margin-bottom: 20px; 
+}
+
+.single-group h3 {
+    color: #FFFFFF; 
+}
+
+.single-group h4 {
+    color: #E16C5B; /* Color for author and rating */
 }
 
 .button {
@@ -242,6 +259,23 @@ footer .nav-link:hover {
 
 .button-second:hover {
     background-color: #713C46;
+}
+
+.button-single {
+    font-family: 'SourceSansProBold', sans-serif;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #462C2F;
+    background-color: #EEEEEE;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: #E16C5B 0.3s ease;
+    font-weight: bold;
+}
+
+.button-single:hover {
+    background-color: #E16C5B;
 }
 
 .book-button-container {

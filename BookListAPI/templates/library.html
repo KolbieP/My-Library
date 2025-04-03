@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}">
 </head>
+
 <body>
     <nav class="top-nav">
         <div class="logo">
@@ -30,6 +32,19 @@
             a diverse range of genres, discover new favorites, and track your own reading progress alongside mine. Dive
             into the world of books and let the stories ignite your imagination!</p>
     </div>
+
+    <div class="single-group">
+        <div id="single-book-display">
+            <h3 id="book-title"></h3>
+            <h4 id="book-author"></h4>
+            <h4 id="book-rating"></h4>
+        </div>
+        <div class="button-container">
+            <button class="prev button-single">Previous</button>
+            <button class="next button-single">Next</button>
+        </div>
+    </div>
+
     <div class="book-button-container">
         <button class="book-button">Display Library</button>
     </div>
@@ -70,10 +85,13 @@
     </div>
     <div class="group">
         <h2>Community Library</h2>
-        <p>Welcome to the Public Library! This virtual space is designed for readers to share their favorite books and
-            contribute to a growing community of literary enthusiasts. Here, you can input your cherished reads, explore
+        <p>Welcome to the Public Library! This virtual space is designed for readers to share their favorite books
+            and
+            contribute to a growing community of literary enthusiasts. Here, you can input your cherished reads,
+            explore
             recommendations
-            from fellow book lovers, and help build a diverse and dynamic collection. Join us in celebrating the joy of
+            from fellow book lovers, and help build a diverse and dynamic collection. Join us in celebrating the joy
+            of
             reading and discover new
             stories that captivate and inspire!</p>
         <div class="button-container">
@@ -94,7 +112,6 @@
     <script>
 
         function toggleLibrary() {
-            console.log("Button clicked");
             var bookDisplay = document.getElementById('bookDisplay');
             var button = document.querySelector('.book-button');
             if (bookDisplay.style.display === 'none' || bookDisplay.style.display === '') {
@@ -151,6 +168,44 @@
             document.getElementById('searchInput').value = ''; // Clear search input
         }
 
+        let currentBookIndex = 0;
+        let books = [];
+
+        function fetchBooks() {
+            fetch('books')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    books = data.results;  // Extract the results array
+                    console.log(books);  // Log the books array to check the data
+                    updateBookDisplay();
+                })
+                .catch(error => console.error('Error fetching books:', error));
+        }
+
+        function updateBookDisplay() {
+            if (books.length > 0) {
+                const book = books[currentBookIndex];
+                document.getElementById('book-title').textContent = book.title;
+                document.getElementById('book-author').textContent = book.author;
+                document.getElementById('book-rating').textContent = book.rating;
+            }
+        }
+
+        function showNextBook() {
+            currentBookIndex = (currentBookIndex + 1) % books.length;
+            updateBookDisplay();
+        }
+
+        function showPreviousBook() {
+            currentBookIndex = (currentBookIndex - 1 + books.length) % books.length;
+            updateBookDisplay();
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             var button = document.querySelector('.book-button');
             if (button) {
@@ -166,7 +221,20 @@
             if (clearButton) {
                 clearButton.addEventListener('click', clearSearchResults);
             }
+
+            var prevButton = document.querySelector('.prev');
+            if (prevButton) {
+                prevButton.addEventListener('click', showPreviousBook);
+            }
+
+            var nextButton = document.querySelector('.next');
+            if (nextButton) {
+                nextButton.addEventListener('click', showNextBook);
+            }
+
+            fetchBooks();
         });
     </script>
 </body>
+
 </html>
