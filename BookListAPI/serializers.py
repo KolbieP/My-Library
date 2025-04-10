@@ -15,7 +15,6 @@ class BookSerializer(serializers.ModelSerializer):
             }
         }
 
-
 # Serializer for PublicBook model
 class PublicBookSerializer(serializers.ModelSerializer):
     class Meta:

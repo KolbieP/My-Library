@@ -1,6 +1,6 @@
 from rest_framework import generics, viewsets
 from .models import Book, PublicBook
-from .serializers import BookSerializer
+from .serializers import BookSerializer, PublicBookSerializer
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -74,3 +74,9 @@ def search_public_books(request):
     
     results = [{'title': book.title, 'author': book.author, 'rating': book.rating} for book in books]
     return JsonResponse(results, safe=False)
+
+
+# Allows changing/deleting books in the public database -
+class changePublicBook(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
+    queryset = PublicBook.objects.using('public_library').all()
+    serializer_class = PublicBookSerializer
