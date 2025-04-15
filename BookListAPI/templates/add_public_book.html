@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}">
 </head>
+
 <body>
     <nav class="top-nav">
         <div class="logo">
@@ -37,7 +39,7 @@
             <input type="text" name="title" placeholder="Title" required>
             <input type="text" name="author" placeholder="Author" required>
             <input type="number" name="rating" placeholder="Rating" step="0.1" required>
-            <button type="submit">Add Book</button>
+            <button class="submit-btn" type="submit">Add Book</button>
         </form>
     </div>
     <footer class="top-nav">
@@ -51,5 +53,52 @@
         </ul>
     </footer>
     <script src="{% static 'script.js' %}"></script>
+    <script>
+
+        function bookAdded(event) {
+            event.preventDefault();
+            console.log('bookAdded function called');
+            const form = document.querySelector('form');
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showPopup(data.message);
+                    }
+                });
+        }
+
+        function showPopup(message) {
+            const popup = document.createElement('div');
+            console.log('ShowPopup function called');
+            popup.id = 'popup';
+            popup.className = 'popup';
+            popup.innerHTML = `
+            <div class="popup-content">
+                <span id="closePopup" class="close">&times;</span>
+                <p id="popupMessage">${message}</p>
+            </div>`;
+            document.body.appendChild(popup);
+
+            document.getElementById('closePopup').addEventListener('click', function () {
+                document.getElementById('popup').remove();
+            });
+
+            popup.style.display = 'flex';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var button = document.querySelector('.submit-btn');
+            if (button) {
+                button.addEventListener('click', bookAdded);
+                console.log('Event listeer called');
+            }
+        });
+    </script>
 </body>
+
 </html>

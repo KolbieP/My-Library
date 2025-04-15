@@ -53,7 +53,7 @@ def add_public_book(request):
         author = request.POST.get('author')
         rating = request.POST.get('rating')
         PublicBook.objects.using('public_library').create(title=title, author=author, rating=rating)
-        return JsonResponse({'message': 'Book added successfully'}, status=201)
+        return JsonResponse({'message': 'Book added successfully', 'success': True}, status=201)
     return render(request, 'add_public_book.html')
 
 
