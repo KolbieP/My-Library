@@ -3,6 +3,8 @@ from .models import Book, PublicBook
 from .serializers import BookSerializer, PublicBookSerializer
 from django.shortcuts import render
 from django.http import JsonResponse
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 # Create your views here.
 
@@ -82,3 +84,10 @@ def search_public_books(request):
 class changePublicBook(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     queryset = PublicBook.objects.using('public_library').all()
     serializer_class = PublicBookSerializer
+
+
+@api_view(['GET'])
+def all_books(request):
+    books = Book.objects.all()
+    serializer = BookSerializer(books, many=True)
+    return Response(serializer.data)
