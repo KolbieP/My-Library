@@ -64,11 +64,23 @@
                 method: 'POST',
                 body: formData
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
+                .then(async response => {
+                    const data = await response.json();
+                    if (response.ok && data.success) {
                         showPopup(data.message);
+                    } else if (!response.ok && data.errors) {
+                        // Format the errors for display
+                        const messages = Object.entries(data.errors).map(
+                            ([field, errors]) => `<strong>${field}:</strong> ${errors.join(', ')}`
+                        ).join('<br>');
+                        showPopup(messages);
+                    } else {
+                        throw new Error("Unexpected response structure");
                     }
+                })
+                .catch(error => {
+                    console.error("Caught error:", error);
+                    showPopup("An unexpected error occurred. Please try again.");
                 });
         }
 

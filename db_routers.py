@@ -30,6 +30,6 @@ class PublicLibraryRouter:
         """
         Make sure the public library app only appears in the 'public_library' database.
         """
-        if app_label == 'public_library':
-            return db == 'public_library'
+        if db == 'public_library':
+            return model_name == 'publicbook' and app_label == 'BookListAPI'
         return None

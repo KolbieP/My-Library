@@ -49,11 +49,13 @@ def search_books(request):
 # View to add books to the public library
 def add_public_book(request):
     if request.method == 'POST':
-        title = request.POST.get('title')
-        author = request.POST.get('author')
-        rating = request.POST.get('rating')
-        PublicBook.objects.using('public_library').create(title=title, author=author, rating=rating)
-        return JsonResponse({'message': 'Book added successfully', 'success': True}, status=201)
+        serializer = PublicBookSerializer(data=request.POST)
+        if serializer.is_valid():
+            serializer.save() 
+            return JsonResponse({'message': 'Book added successfully', 'success': True}, status=201)
+        else:
+            return JsonResponse({'success': False, 'errors': serializer.errors}, status=400)
+    
     return render(request, 'add_public_book.html')
 
 

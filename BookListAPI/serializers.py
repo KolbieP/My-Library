@@ -9,7 +9,10 @@ class BookSerializer(serializers.ModelSerializer):
         model = Book
         fields = ['title', 'author', 'rating']
         extra_kwargs = {
-            'rating' : {'max_value': 5},
+            'rating': {
+                'min_value': 0,
+                'max_value': 5,
+            },
             'title': {
                 'validators': [UniqueValidator(queryset=Book.objects.all())]
             }
@@ -20,3 +23,15 @@ class PublicBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicBook
         fields = '__all__'
+        extra_kwargs = {
+            'rating': {
+                'min_value': 0,
+                'max_value': 5,
+            },
+            'title': {
+                'validators': [UniqueValidator(queryset=PublicBook.objects.using('public_library').all())]
+            }
+        }
+
+    def create(self, validated_data):
+        return PublicBook.objects.using('public_library').create(**validated_data)
