@@ -5,8 +5,9 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAdminUser
+from django.contrib.admin.views.decorators import staff_member_required
 
-# Create your views here.
 
 #Is a Class-based view that allows to look at books in the library. Allows filtering, sorting and searching. - GET
 class showBooks (viewsets.ModelViewSet):
@@ -19,11 +20,13 @@ class showBooks (viewsets.ModelViewSet):
 class newBook (generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    permission_classes = [IsAdminUser]
 
 #Allows to change/delete books in the database - DELETE
 class changeBook (generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    permission_classes = [IsAdminUser]
 
 #This connects to the index.html
 def index(request):
@@ -49,6 +52,7 @@ def search_books(request):
 
 
 # View to add books to the public library
+@staff_member_required
 def add_public_book(request):
     if request.method == 'POST':
         serializer = PublicBookSerializer(data=request.POST)
@@ -84,6 +88,7 @@ def search_public_books(request):
 class changePublicBook(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     queryset = PublicBook.objects.using('public_library').all()
     serializer_class = PublicBookSerializer
+    permission_classes = [IsAdminUser]
 
 
 @api_view(['GET'])
