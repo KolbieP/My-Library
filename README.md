@@ -92,7 +92,7 @@ python manage.py migrate --database=public_library</code></pre>
 
 <h3>Maintainer</h3>
 <p>
-  Built by <strong>Kolbi</strong>  
+  Built by <strong>Kolbie Parker</strong>  
   <br>
   <a href="https://github.com/KolbieP" target="_blank">GitHub Profile</a>
 </p>
