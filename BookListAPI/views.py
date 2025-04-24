@@ -90,9 +90,16 @@ class changePublicBook(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     serializer_class = PublicBookSerializer
     permission_classes = [IsAdminUser]
 
-
+# Grabs all books from db.sqlite3 for single book view 
 @api_view(['GET'])
 def all_books(request):
     books = Book.objects.all()
     serializer = BookSerializer(books, many=True)
+    return Response(serializer.data)
+
+# Grabs all the books from public_library.sqlite3 for single book view 
+@api_view(['GET'])
+def all_public_books(request):
+    books = PublicBook.objects.using('public_library').all()
+    serializer = PublicBookSerializer(books, many=True)
     return Response(serializer.data)

@@ -24,7 +24,7 @@
     <div class="main-image">
         <h1 class="main">Public Library</h1>
     </div>
-    <div class="group">
+    <div class="group public-library">
         <h2>Community Library</h2>
         <p>Welcome to the Public Library! This is where people's favorite books are displayed, showcasing the diverse
             tastes and cherished reads of our community. Contribute to the collection and help build a vibrant literary
@@ -32,13 +32,24 @@
         <p>Contribute to the community!</p>
         <a href="{% url 'add_public_book' %}" class="button-second">Add Book</a>
     </div>
+    <div class="single-group single-public">
+        <div id="single-public-book-display">
+            <h3 id="public-book-title"></h3>
+            <h4 id="public-book-author"></h4>
+            <h4 id="public-book-rating"></h4>
+        </div>
+        <div class="button-container">
+            <button class="prev-public button-single">Previous</button>
+            <button class="next-public button-single">Next</button>
+        </div>
+    </div>
     <div class="book-button-container">
         <button class="book-button">Display Library</button>
     </div>
     <div class="book-display" id="bookDisplay" style="display: none; text-align: center;">
         {% if public_books %}
         <div class="book-container">
-            <table class="book-table">
+            <table class="book-table public-book-table">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -83,6 +94,42 @@
         </ul>
     </footer>
     <script>
+        let currentPublicBookIndex = 0;
+        let publicBooks = [];
+
+        function fetchPublicBooks() {
+            fetch('public_all_books/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    publicBooks = data;
+                    updatePublicBookDisplay();
+                })
+                .catch(error => console.error('Error fetching public books:', error));
+        }
+
+        function updatePublicBookDisplay() {
+            if (publicBooks.length > 0) {
+                const book = publicBooks[currentPublicBookIndex];
+                document.getElementById('public-book-title').textContent = book.title;
+                document.getElementById('public-book-author').textContent = book.author;
+                document.getElementById('public-book-rating').textContent = book.rating;
+            }
+        }
+
+        function showNextPublicBook() {
+            currentPublicBookIndex = (currentPublicBookIndex + 1) % publicBooks.length;
+            updatePublicBookDisplay();
+        }
+
+        function showPreviousPublicBook() {
+            currentPublicBookIndex = (currentPublicBookIndex - 1 + publicBooks.length) % publicBooks.length;
+            updatePublicBookDisplay();
+        }
 
         function toggleLibrary() {
             console.log("Button clicked");
@@ -157,8 +204,18 @@
             if (clearButton) {
                 clearButton.addEventListener('click', clearSearchResults);
             }
+
+            var nextButton = document.querySelector('.next-public');
+            if (nextButton) {
+                nextButton.addEventListener('click', showNextPublicBook);
+            }
+            var prevButton = document.querySelector('.prev-public');
+            if (prevButton) {
+                prevButton.addEventListener('click', showPreviousPublicBook);
+            }
+
+            fetchPublicBooks();
         });
     </script>
 </body>
-
 </html>

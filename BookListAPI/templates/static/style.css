@@ -202,6 +202,7 @@ footer .nav-link:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+
 .single-group {
     background-color: #462C2F; 
     color: #EEEEEE; 
@@ -344,6 +345,10 @@ footer .nav-link:hover {
     background-color: #ddd;
 }
 
+.public-book-table thead {
+    background-color: #262626; 
+}
+
 .search {
     display: flex;
     flex-direction: column;
@@ -479,3 +484,33 @@ form button[type="submit"]:hover {
 }
     
         
+.personal-library {
+    background-color: #462C2F;
+    color: #EEEEEE;
+}
+
+.personal-library h2 {
+    color: #E16C5B;
+}
+
+.personal-library p {
+    color: #EEEEEE;
+}
+
+.public-library {
+    background-color: #262626;
+    color: #EEEEEE;
+}
+
+.public-library h2 {
+    color: #E16C5B;
+} 
+
+.public-library p {
+    color: #EEEEEE;
+}
+
+.single-public {
+    background-color: #262626;
+}
+
