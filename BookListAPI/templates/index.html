@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}">
 </head>
+
 <body>
     <nav class="top-nav">
         <div class="logo">
@@ -19,43 +21,135 @@
             <li><a href="{% url 'public_library' %}" class="nav-link">Public Library</a></li>
         </ul>
     </nav>
-    
+
     <div>
         <div class="main-image">
             <h1 class="main">Book Collection</h1>
         </div>
         <div class="group">
             <h2>My Literary Adventures</h2>
-            <p>Welcome to my library! Here, you'll find a curated selection of books that I've read and enjoyed. Feel free to browse through the titles and discover new reads.</p>
+            <p>Welcome to my library! Here, you'll find a curated selection of books that I've read and enjoyed. Feel
+                free to browse through the titles and discover new reads.</p>
             <a href="{% url 'book' %}" class="button">Go to Library</a>
         </div>
-        <div class="book-of-month">
-            <div class="image">
-                <img alt="The Poppy War Book Cover" src="{% static '/book-cover.jpg' %}" class="book-image">
-            </div>
-            <div class="text">
-                <h2>Book of the Month</h2>
-                <h3>The Poppy War</h3>
-                <h4>R.F. Kuang</h4>
-                <p>An epic historical military fantasy, inspired by the bloody history of China’s twentieth century and filled with treachery and magic. 
-                    <br><br>When Rin aced the Keju—the Empire-wide test to find the most talented youth to learn at the Academies—it was a shock to everyone: to the test officials, who couldn’t believe a war orphan from Rooster Province could pass without cheating; to Rin’s guardians, who believed they’d finally be able to marry her off and further their criminal enterprise; and to Rin herself, who realized she was finally free of the servitude and despair that had made up her daily existence. That she got into Sinegard—the most elite military school in Nikan—was even more surprising.
-                    <br><br>But surprises aren’t always good.
-                    <br><br>Because being a dark-skinned peasant girl from the south is not an easy thing at Sinegard. Targeted from the outset by rival classmates for her color, poverty, and gender, Rin discovers she possesses a lethal, unearthly power—an aptitude for the nearly-mythical art of shamanism. Exploring the depths of her gift with the help of a seemingly insane teacher and psychoactive substances, Rin learns that gods long thought dead are very much alive—and that mastering control over those powers could mean more than just surviving school.
-                    <br><br>For while the Nikara Empire is at peace, the Federation of Mugen still lurks across a narrow sea. The militarily advanced Federation occupied Nikan for decades after the First Poppy War, and only barely lost the continent in the Second. And while most of the people are complacent to go about their lives, a few are aware that a Third Poppy War is just a spark away . . .
-                    <br><br>Rin’s shamanic powers may be the only way to save her people. But as she finds out more about the god that has chosen her, the vengeful Phoenix, she fears that winning the war may cost her humanity . . . and that it may already be too late.</p>
+        <div class="book-of-month-carousel">
+            <div class="carousel-track">
+                <!-- Book 1 -->
+                <div class="carousel-slide">
+                    <div class="image">
+                        <img src="{% static 'book1.jpg' %}" alt="The Poppy War Book Cover">
+                    </div>
+                    <div class="text">
+                        <h2>Book of the Month</h2>
+                        <h3>The Poppy War</h3>
+                        <h4>R.F. Kuang</h4>
+                        <p>An epic historical military fantasy, inspired by the bloody history of China’s twentieth
+                            century and filled with treachery and magic.
+                            <br><br>It follows Rin, a war orphan who shocks everyone by acing the Empire-wide test and getting into the elite military school, Sinegard. Despite facing discrimination, Rin discovers her aptitude for shamanism and learns to control her powers with the help of a seemingly insane teacher.
+                            <br><br>As the threat of a Third Poppy War looms, Rin’s shamanic powers may be the only way to save her people. But as she finds out
+                            more about the god that has chosen her, the vengeful Phoenix, she fears that winning the war
+                            may cost her humanity . . . and that it may already be too late.
+                        </p>
+                    </div>
+                </div>
+                <!-- Book 2 -->
+                <div class="carousel-slide">
+                    <div class="image">
+                        <img src="{% static 'book2.jpg' %}" alt="The Midnight Library Book Cover">
+                    </div>
+                    <div class="text">
+                        <h2>Book of the Month</h2>
+                        <h3>The Midnight Library</h3>
+                        <h4>Matt Haig</h4>
+                        <p>When Nora Seed finds herself in the Midnight Library, she has a chance to make things right.
+                            Up until now, her life has been full of misery and regret. She feels she has let everyone
+                            down, including herself. But things are about to change.
+                            <br><br>The books in the Midnight Library enable Nora to live as if she had done things
+                            differently. With the help of an old friend, she can now undo every one of her regrets as
+                            she tries to work out her perfect life. But things aren't always what she imagined they'd
+                            be, and soon her choices place the library and herself in extreme danger.
+                            <br><br>Before time runs out, she must answer the ultimate question: what is the best way to
+                            live?
+                        </p>
+                    </div>
+                </div>
+                <!-- Book 3 -->
+                <div class="carousel-slide">
+                    <div class="image">
+                        <img src="{% static 'book3.jpg' %}" alt="Circe Book Cover">
+                    </div>
+                    <div class="text">
+                        <h2>Book of the Month</h2>
+                        <h3>Circe</h3>
+                        <h4>Madeline Miller</h4>
+                        <p>In the house of Helios, god of the sun and mightiest of the Titans, a daughter is born. But
+                            Circe is a strange child--neither powerful like her father nor viciously alluring like her
+                            mother. Turning to the world of mortals for companionship, she discovers that she does
+                            possess power: the power of witchcraft, which can transform rivals into monsters and menace
+                            the gods themselves.
+                            <br><br>Threatened, Zeus banishes her to a deserted island, where she hones her occult
+                            craft, tames wild beasts, and crosses paths with many of the most famous figures in all of
+                            mythology, including the Minotaur, Daedalus and his doomed son Icarus, the murderous Medea,
+                            and, of course, wily Odysseus.
+                            <br><br>But there is danger, too, for a woman who stands alone, and Circe unwittingly draws
+                            the wrath of both men and gods, ultimately finding herself pitted against one of the most
+                            terrifying and vengeful of the Olympians. To protect what she loves most, Circe must summon
+                            all her strength and choose, once and for all, whether she belongs with the gods she is born
+                            from or with the mortals she has come to love.
+                        </p>
+                    </div>
+                </div>
+                <!-- Navigation dots -->
+                <div class="carousel-dots">
+                    <span class="dot active-dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
             </div>
         </div>
-    </div>
-    <footer class="top-nav">
-        <div class="logo">
-            <img src="{% static 'white-logo.png' %}" alt="Logo">
-        </div>
-        <ul class="nav-links">
-            <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
-            <li><a href="{% url 'book' %}" class="nav-link">Kolbie's Library</a></li>
-            <li><a href="{% url 'public_library' %}" class="nav-link">Public Library</a></li>
-        </ul>
-    </footer>
-    <script src="{% static 'static/script.js' %}"></script>
+        <footer class="top-nav">
+            <div class="logo">
+                <img src="{% static 'white-logo.png' %}" alt="Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
+                <li><a href="{% url 'book' %}" class="nav-link">Kolbie's Library</a></li>
+                <li><a href="{% url 'public_library' %}" class="nav-link">Public Library</a></li>
+            </ul>
+        </footer>
+        <script src="{% static 'static/script.js' %}"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const slides = document.querySelectorAll('.carousel-slide');
+                const dots = document.querySelectorAll('.dot');
+                let currentIndex = 0;
+
+                function showSlide(index) {
+                    slides.forEach((slide, i) => {
+                        slide.style.display = i === index ? 'flex' : 'none';
+                        dots[i].classList.toggle('active-dot', i === index);
+                    });
+                }
+
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    showSlide(currentIndex);
+                }
+
+                dots.forEach((dot, i) => {
+                    dot.addEventListener('click', () => {
+                        currentIndex = i;
+                        showSlide(currentIndex);
+                    });
+                });
+
+                // Initial display
+                showSlide(currentIndex);
+
+                // Auto-switch every 5 seconds
+                setInterval(nextSlide, 10000);
+            });
+        </script>
 </body>
+
 </html>

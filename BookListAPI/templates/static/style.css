@@ -514,3 +514,65 @@ form button[type="submit"]:hover {
     background-color: #262626;
 }
 
+.book-of-month-carousel {
+    background-color: #462C2F;
+    padding: 40px;
+    border-radius: 20px;
+    margin: 60px auto;
+    max-width: 1000px;
+    position: relative;
+    color: #EEEEEE;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.carousel-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel-slide {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.carousel-slide .image {
+    flex: 1;
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.carousel-slide .text {
+    flex: 2;
+    padding: 0 20px;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.active-dot {
+    background-color: #E16C5B;
+}
+
+.text h2 {
+    color: #EEEEEE;
+}
